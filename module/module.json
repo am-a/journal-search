@@ -1,0 +1,45 @@
+{
+    "name": "journal-search",
+    "id": "journal-search",
+    "title": "Journal Search",
+    "description": "Simple search for journals.",
+    "authors": [
+        {
+            "name": "Alex Mackay-Austin",
+            "url": "https://github.com/am-a",
+            "discord": "valravn#7351"
+        }
+    ],
+    "version": "0.0.1",
+    "compatibility": {
+        "minimum": "10",
+        "verified": "10"
+    },
+    "minimumCoreVersion": "10",
+    "compatibleCoreVersion": "10",
+    "url": "https://github.com/am-a/journal-search",
+    "manifest": "https://github.com/am-a/journal-search/releases/download/0.0.1/module.json",
+    "download": "https://github.com/am-a/journal-search/releases/download/0.0.1/release-0.0.1.zip",
+    "type": "module",
+    "esmodules": ["scripts/module.js"],
+    "styles": ["styles/module.css"],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "relationships": {
+        "requires": [
+            {
+                "id": "lib-wrapper",
+                "type": "module",
+                "compatibility": {
+                    "minimum": "1.0.0.0",
+                    "verified": "1.12.6.0"
+                }
+            }
+        ]
+    }
+}

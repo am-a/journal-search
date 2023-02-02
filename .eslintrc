@@ -1,0 +1,62 @@
+{
+    "root": true,
+    "overrides": [
+        // TypeScript
+        {
+            "files": ["*.{ts,tsx}"],
+            "parser": "@typescript-eslint/parser",
+            "parserOptions": {
+                "ecmaFeatures": {
+                    "jsx": true
+                },
+                "sourceType": "module",
+                "project": "./tsconfig.json"
+            },
+            "plugins": ["@typescript-eslint"],
+            "extends": [
+                "eslint:recommended",
+                "plugin:@typescript-eslint/eslint-recommended",
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@typescript-eslint/recommended-requiring-type-checking",
+                "prettier"
+            ],
+            "env": {
+                "browser": true,
+                "jquery": true
+            },
+            "settings": {},
+            "rules": {
+                "@typescript-eslint/no-shadow": ["error"],
+                "arrow-body-style": "error",
+                "comma-dangle": ["error", "always-multiline"],
+                "function-call-argument-newline": ["error", "consistent"],
+                "no-duplicate-imports": "error",
+                "prefer-const": [
+                    "error",
+                    {
+                        "destructuring": "any",
+                        "ignoreReadBeforeAssign": false
+                    }
+                ],
+                "quote-props": ["error", "as-needed"],
+                "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+                "sort-keys": "off"
+            }
+        },
+        {
+            "files": ["**/*.mjs"],
+            "env": {
+                "es6": true,
+                "node": true,
+                "es2022": true
+            },
+            "parserOptions": {
+                "ecmaFeatures": {
+                    "jsx": true
+                },
+                "ecmaVersion": "latest",
+                "sourceType": "module"
+            }
+        }
+    ]
+}

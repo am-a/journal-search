@@ -1,0 +1,35 @@
+.journal-search-preview {
+    margin: 0.2em;
+    font-size: smaller;
+    padding: 0 0.5em;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+.journal-search-preview > * {
+    display: inline;
+}
+
+.journal-search-result {
+    background: rgb(255 255 255 / 10%);
+    cursor: pointer;
+}
+
+.journal-search-result mark:not(.active) {
+    background: transparent;
+    color: inherit;
+}
+
+.journal-search-result:hover {
+    background: var(--color-shadow-primary);
+    filter: saturate(0.5);
+}
+
+.journal-search-more {
+    background: rgb(255 255 255 / 5%);
+    text-align: center;
+    font-style: italic;
+    opacity: 0.5;
+}
