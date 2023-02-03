@@ -1,5 +1,10 @@
+## <small>0.0.5 (2023-02-03)</small>
+
+-   feat: adds preview hover highlighting on page ([67e2ab8](https://github.com/am-a/journal-search/commit/67e2ab8))
+
 ## <small>0.0.4 (2023-02-03)</small>
 
+-   release: v0.0.4 ([4f66465](https://github.com/am-a/journal-search/commit/4f66465))
 -   fix: fixes some styling issues with search results ([b04bf4d](https://github.com/am-a/journal-search/commit/b04bf4d))
 
 ## <small>0.0.3 (2023-02-03)</small>
