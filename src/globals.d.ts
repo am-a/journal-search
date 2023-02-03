@@ -37,6 +37,8 @@ declare class JournalSheet<Options extends JournalSheetOptions = JournalSheetOpt
     Options,
     ConcreteJournalEntry
 > {
+    mode: unknown;
+
     goToPage(pageId: string, anchor?: unknown): void | Promise<void>;
     pageIndex: string;
     object: {

@@ -11,9 +11,15 @@ const createPageContentElement = (pageContent: string | undefined) => {
 };
 
 export function _onSearchFilter(this: JournalSheet, _: InputEvent, query: string, rgx: RegExp, html: HTMLElement) {
+    if (this.mode !== (this.constructor as unknown as { VIEW_MODES: Record<string, unknown> }).VIEW_MODES.SINGLE) {
+        return;
+    }
+
     const scrollToTargetAnchor = () => {
         if (this._targetAnchorIndex != null) {
-            this.element[0]?.querySelectorAll('.journal-page-content mark')[this._targetAnchorIndex]?.scrollIntoView();
+            this.element[0]?.querySelectorAll('.journal-page-content mark')[this._targetAnchorIndex]?.scrollIntoView({
+                block: 'center',
+            });
             this._targetAnchorIndex = undefined;
         }
     };
@@ -51,13 +57,25 @@ export function _onSearchFilter(this: JournalSheet, _: InputEvent, query: string
             scrollToTargetAnchor();
         }
 
-        createPreviewsFromPageQueryMarkup(pageWithQueryMarkup, el, async (anchorIndex) => {
-            this._targetAnchorIndex = anchorIndex;
-            if (currentPageId !== page._id) {
-                await this.goToPage(page._id);
-            } else {
-                scrollToTargetAnchor();
-            }
+        createPreviewsFromPageQueryMarkup(pageWithQueryMarkup, el, {
+            onPreviewClicked: async (anchorIndex) => {
+                this._targetAnchorIndex = anchorIndex;
+                if (currentPageId !== page._id) {
+                    await this.goToPage(page._id);
+                } else {
+                    scrollToTargetAnchor();
+                }
+            },
+            onPreviewHover: (anchorIndex) => {
+                $(this.element)
+                    .find(`.journal-entry-page[data-page-id="${page._id}"] .journal-page-content mark`)
+                    .each((i, $markEl) => {
+                        $markEl.classList.toggle('active', i === anchorIndex);
+                    });
+            },
+            onPreviewHoverEnd: () => {
+                $(this.element).find('.journal-page-content mark').removeClass('active');
+            },
         });
     });
 }

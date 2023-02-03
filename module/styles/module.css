@@ -1,5 +1,5 @@
 .journal-search-preview {
-    margin: 0.2em;
+    margin: 0;
     font-size: smaller;
     padding: 0 0.5em;
 
@@ -9,32 +9,33 @@
 
     height: 1.5em;
     line-height: 1.5em;
-}
 
-.journal-search-preview * {
-    color: inherit !important;
-    font-size: unset !important;
-    display: inline !important;
-    max-height: 1.5em !important;
-    line-height: 1.5em !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    vertical-align: bottom !important;
-}
-
-.journal-search-preview mark {
-    background-color: yellow !important;
-    color: black !important;
+    border: 0.5em solid transparent;
+    box-sizing: content-box;
+    background-clip: content-box;
 }
 
 .journal-search-result {
-    background: rgb(255 255 255 / 10%);
+    background-color: rgb(255 255 255 / 10%);
     cursor: pointer;
 }
 
 .journal-search-result mark:not(.active) {
     background: transparent;
     color: inherit;
+}
+
+.journal-page-content mark.active {
+    outline: 1px dotted red;
+}
+
+.journal-page-content:has(mark.active) {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.journal-page-content:has(mark.active) mark:not(.active) {
+    color: currentColor;
+    background-color: transparent;
 }
 
 .journal-search-result:hover {

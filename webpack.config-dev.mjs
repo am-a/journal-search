@@ -14,7 +14,7 @@ const devConfig = merge(baseConfig, {
         hot: true,
         client: false,
         devMiddleware: {
-            writeToDisk: true,
+            writeToDisk: false,
         },
         port: 30001,
         static: {

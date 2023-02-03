@@ -1,13 +1,25 @@
+import { createTextNodeOnlyElement } from './create-text-node-only-element';
+
 export const createPreviewsFromPageQueryMarkup = (
     pageWithQueryMarkup: HTMLElement,
     pageElement: HTMLElement,
-    onPreviewClicked?: (anchorIndex: number) => Promise<void>,
+    {
+        onPreviewClicked,
+        onPreviewHover,
+        onPreviewHoverEnd,
+    }: {
+        onPreviewClicked?: (anchorIndex: number) => void | Promise<void>;
+        onPreviewHover?: (anchorIndex: number) => void;
+        onPreviewHoverEnd?: (anchorIndex: number) => void;
+    },
 ) => {
-    const matches = Array.from(pageWithQueryMarkup.querySelectorAll('mark'));
+    const textOnlyElement = createTextNodeOnlyElement(pageWithQueryMarkup);
+
+    const matches = Array.from(textOnlyElement.querySelectorAll('mark'));
 
     matches.slice(0, 3).forEach((_, i) => {
         const $preview = $(`<div class="journal-search-preview journal-search-result" data-result-index="${i}"></div>`)
-            .append($(pageWithQueryMarkup).clone().contents())
+            .append($(textOnlyElement).clone().contents())
             .appendTo(pageElement);
 
         $preview.find('mark').eq(i)[0]?.scrollIntoView({
@@ -20,6 +32,14 @@ export const createPreviewsFromPageQueryMarkup = (
 
         $preview.on('click', () => {
             void onPreviewClicked?.(i);
+        });
+
+        $preview.on('mouseover', () => {
+            void onPreviewHover?.(i);
+        });
+
+        $preview.on('mouseout', () => {
+            void onPreviewHoverEnd?.(i);
         });
     });
 
