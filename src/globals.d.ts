@@ -25,7 +25,7 @@ declare interface JournalPageData {
     image: unknown;
     text: {
         format: number;
-        content: string;
+        content?: string | undefined;
         markdown: string;
     };
     video: unknown;

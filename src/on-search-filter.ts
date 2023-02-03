@@ -2,9 +2,11 @@ import { createMarkupForPageQueryMatches } from './create-markup-for-page-query-
 import { createPreviewsFromPageQueryMarkup } from './create-previews-from-page-query-markup';
 import { getPageMatches } from './get-page-matches';
 
-const createPageContentElement = (pageContent: string) => {
+const createPageContentElement = (pageContent: string | undefined) => {
     const element = document.createElement('slot');
-    element.innerHTML = pageContent;
+    if (pageContent) {
+        element.innerHTML = pageContent;
+    }
     return element;
 };
 

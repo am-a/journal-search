@@ -6,10 +6,25 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: clip;
+
+    height: 1.5em;
+    line-height: 1.5em;
 }
 
-.journal-search-preview > * {
-    display: inline;
+.journal-search-preview * {
+    color: inherit !important;
+    font-size: unset !important;
+    display: inline !important;
+    max-height: 1.5em !important;
+    line-height: 1.5em !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    vertical-align: bottom !important;
+}
+
+.journal-search-preview mark {
+    background-color: yellow !important;
+    color: black !important;
 }
 
 .journal-search-result {
@@ -23,7 +38,7 @@
 }
 
 .journal-search-result:hover {
-    background: var(--color-shadow-primary);
+    background: var(--color-shadow-primary, darkred);
     filter: saturate(0.5);
 }
 
