@@ -1,14 +1,19 @@
 {
     "name": "foundry-vtt-journal-search",
+    "version": "0.0.1",
     "scripts": {
         "build:dev": "yarn webpack --config-name dev",
         "build:prod": "yarn webpack --config-name prod",
         "format": "yarn prettier --config .prettierrc 'src/**/*.ts' --write",
         "lint": "yarn eslint . --ext .ts --ext mjs",
-        "serve": "yarn webpack serve --config-name dev"
+        "serve": "yarn webpack serve --config-name dev",
+        "postinstall": "husky install",
+        "prepack": "pinst --disable",
+        "postpack": "pinst --enable"
     },
-    "dependencies": {},
     "devDependencies": {
+        "@babel/eslint-parser": "^7.19.1",
+        "@babel/plugin-syntax-import-assertions": "^7.20.0",
         "@types/debug": "^4.1.7",
         "@types/eslint": "^8.4.10",
         "@types/jest": "^29.4.0",
@@ -21,13 +26,19 @@
         "@typescript-eslint/parser": "^5.50.0",
         "@yarnpkg/pnpify": "^4.0.0-rc.37",
         "@yarnpkg/sdks": "^2.7.0",
+        "commitizen": "^4.3.0",
+        "conventional-changelog-cli": "^2.2.2",
         "copy-webpack-plugin": "^11.0.0",
         "css-loader": "^6.7.3",
+        "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.33.0",
         "eslint-config-prettier": "^8.6.0",
         "foundry-vtt-types": "League-of-Foundry-Developers/foundry-vtt-types",
+        "handlebars": "^4.7.7",
         "html-webpack-plugin": "^5.5.0",
+        "husky": "^8.0.0",
         "jest": "^29.4.1",
+        "pinst": "^3.0.0",
         "pnp-webpack-plugin": "^1.7.0",
         "prettier": "^2.8.3",
         "sass": "^1.58.0",
@@ -43,5 +54,10 @@
         "webpack-dev-server": "^4.11.1",
         "webpack-merge": "^5.8.0"
     },
-    "packageManager": "yarn@3.3.1"
+    "packageManager": "yarn@3.3.1",
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    }
 }

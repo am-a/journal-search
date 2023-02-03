@@ -4,9 +4,7 @@ import { URL } from 'node:url';
 const __dirname = new URL('.', import.meta.url).pathname;
 
 export default {
-    entry: [
-        './src/index.ts'
-    ],
+    entry: ['./src/index.ts'],
     output: {
         filename: 'module.js',
         path: path.join(__dirname, 'module/scripts'),
@@ -39,5 +37,5 @@ export default {
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.scss'],
     },
-    devtool: false
+    devtool: false,
 };

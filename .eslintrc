@@ -45,17 +45,12 @@
         },
         {
             "files": ["**/*.mjs"],
-            "env": {
-                "es6": true,
-                "node": true,
-                "es2022": true
-            },
+            "parser": "@babel/eslint-parser",
             "parserOptions": {
-                "ecmaFeatures": {
-                    "jsx": true
-                },
-                "ecmaVersion": "latest",
-                "sourceType": "module"
+                "requireConfigFile": false,
+                "babelOptions": {
+                    "plugins": ["@babel/plugin-syntax-import-assertions"]
+                }
             }
         }
     ]
