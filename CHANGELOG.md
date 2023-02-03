@@ -1,5 +1,10 @@
+## <small>0.0.4 (2023-02-03)</small>
+
+-   fix: fixes some styling issues with search results ([b04bf4d](https://github.com/am-a/journal-search/commit/b04bf4d))
+
 ## <small>0.0.3 (2023-02-03)</small>
 
+-   release: v0.0.3 ([74d5787](https://github.com/am-a/journal-search/commit/74d5787))
 -   fix: fixes release version ([47b447a](https://github.com/am-a/journal-search/commit/47b447a))
 
 ## <small>0.0.2 (2023-02-03)</small>
