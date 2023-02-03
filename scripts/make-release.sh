@@ -27,6 +27,8 @@ yarn prettier --write CHANGELOG.md
 
 # Add CHANGELOG.md to git
 git add CHANGELOG.md
+git add package.json
+git add module/module.json
 
 # Commit CHANGELOG.md
 HUSKY=0 git commit -m "release: $RELEASE_VERSION"

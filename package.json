@@ -1,6 +1,6 @@
 {
     "name": "foundry-vtt-journal-search",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "scripts": {
         "build:dev": "yarn webpack --config-name dev",
         "build:prod": "yarn webpack --config-name prod",
