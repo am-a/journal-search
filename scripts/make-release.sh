@@ -17,7 +17,7 @@ export RELEASE_VERSION
 echo "Creating release $RELEASE_VERSION"
 
 # Create release directory
-(cd module && zip -r "../releases/release-$RELEASE_VERSION.zip" .)
+(cd module && zip -r "../releases/release-v$RELEASE_VERSION.zip" .)
 
 # Generate CHANGELOG.md
 yarn conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0
@@ -31,7 +31,7 @@ git add package.json
 git add module/module.json
 
 # Commit CHANGELOG.md
-HUSKY=0 git commit -m "release: $RELEASE_VERSION"
+HUSKY=0 git commit -m "release: v$RELEASE_VERSION"
 
 # tag release
-git tag -a "v$RELEASE_VERSION" -m "Release $RELEASE_VERSION"
+git tag -a "v$RELEASE_VERSION" -m "Release v$RELEASE_VERSION"
