@@ -1,5 +1,10 @@
+## <small>0.0.6 (2023-02-13)</small>
+
+-   feat: adds support for multipage, monks, settings ([5a18656](https://github.com/am-a/journal-search/commit/5a18656))
+
 ## <small>0.0.5 (2023-02-03)</small>
 
+-   release: v0.0.5 ([852e30f](https://github.com/am-a/journal-search/commit/852e30f))
 -   feat: adds preview hover highlighting on page ([67e2ab8](https://github.com/am-a/journal-search/commit/67e2ab8))
 
 ## <small>0.0.4 (2023-02-03)</small>
@@ -16,7 +21,4 @@
 
 -   release: 0.0.2 ([83f7dac](https://github.com/am-a/journal-search/commit/83f7dac))
 -   build: adds commit versioning ([e5f52a8](https://github.com/am-a/journal-search/commit/e5f52a8))
-
-## <small>0.0.1 (2023-02-02)</small>
-
 -   chore: initial commit ([ee5c061](https://github.com/am-a/journal-search/commit/ee5c061))
