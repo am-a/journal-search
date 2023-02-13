@@ -1,6 +1,9 @@
-## <small>0.0.6 (2023-02-13)</small>
+## <small>0.0.7 (2023-02-13)</small>
 
+-   feat: add settings for sidebar results - also readme ([e73c7dc](https://github.com/am-a/journal-search/commit/e73c7dc))
+-   feat: adds sidebar results ([a6bc947](https://github.com/am-a/journal-search/commit/a6bc947)), closes [#1](https://github.com/am-a/journal-search/issues/1)
 -   feat: adds support for multipage, monks, settings ([5a18656](https://github.com/am-a/journal-search/commit/5a18656))
+-   release: v0.0.6 ([7feb1a2](https://github.com/am-a/journal-search/commit/7feb1a2))
 
 ## <small>0.0.5 (2023-02-03)</small>
 
