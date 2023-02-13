@@ -36,6 +36,10 @@ declare interface JournalPageData {
     flags: unknown;
 }
 
+class JournalEntry extends ClientDocumentMixin(foundry.documents.BaseJournalEntry) {
+    pages: DocumentCollection<JournalPageData, 'pages'>;
+}
+
 declare class JournalSheet<Options extends JournalSheetOptions = JournalSheetOptions> extends DocumentSheet<
     Options,
     ConcreteJournalEntry
@@ -43,11 +47,7 @@ declare class JournalSheet<Options extends JournalSheetOptions = JournalSheetOpt
     mode: unknown;
     pageIndex: string;
 
-    object: {
-        _id: string;
-        pages: DocumentCollection<JournalPageData, 'pages'>;
-        // parent: JournalEntry & { _id: string };
-    };
+    object: JournalEntry;
 
     goToPage(pageId: string, anchor?: unknown): void | Promise<void>;
 
@@ -57,6 +57,13 @@ declare class JournalSheet<Options extends JournalSheetOptions = JournalSheetOpt
     _pages: Record<string, JournalPageData>;
     _render(force: boolean, options: unknown): Promise<void>;
     _renderPageViews(html: JQuery<HTMLElement>, toc: unknown): Promise<void>;
+}
+
+declare class JournalDirectory<
+    Options extends SidebarDirectory.Options = SidebarDirectory.Options,
+> extends SidebarDirectory<'JournalEntry', Options> {
+    _render(force: boolean, options: unknown): Promise<void>;
+    _onSearchFilter(_: InputEvent, query: string, rgx: RegExp, html: HTMLElement): void;
 }
 
 declare class EnhancedJournal {
@@ -74,6 +81,8 @@ declare namespace ClientSettings {
         'journal-search.highlight-page-matches-on-hover': boolean;
         'journal-search.mark-background-colour': string;
         'journal-search.mark-foreground-colour': string;
+        'journal-search.sidebar-page-title-text-colour': string;
+        'journal-search.sidebar-page-title-underline-colour': string;
     }
 }
 

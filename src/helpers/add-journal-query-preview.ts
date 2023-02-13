@@ -1,6 +1,6 @@
 import { JournalSearchSettingsNoNS } from '../types';
 
-export const addQueryPreview =
+export const addJournalQueryPreview =
     (
         TOCFromRender: Map<string, HTMLElement>,
         contentFromRender: Map<string, HTMLElement>,

@@ -67,3 +67,27 @@
         }
     }
 }
+
+.journal-search-preview-container {
+    margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+
+    .journal-search-preview {
+        max-width: calc(100% - 24px);
+    }
+
+    .journal-search-preview-page-title {
+        border-bottom: 1px dashed var(--journal-search-page-title-underline-colour, #ea25e3);
+        color: var(--journal-search-page-title-text-colour, #8497f7);
+        cursor: pointer;
+        margin-top: 0.75em;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.2);
+            filter: brightness(1.5);
+        }
+    }
+}

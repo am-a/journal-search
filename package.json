@@ -12,8 +12,10 @@
         "postpack": "pinst --enable"
     },
     "devDependencies": {
+        "@babel/core": "^7.20.12",
         "@babel/eslint-parser": "^7.19.1",
         "@babel/plugin-syntax-import-assertions": "^7.20.0",
+        "@types/babel__core": "^7",
         "@types/debug": "^4.1.7",
         "@types/eslint": "^8.4.10",
         "@types/jest": "^29.4.0",

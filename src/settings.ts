@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import { createJournalSearchStyleTag } from './helpers/create-style-tag';
 import { journalSearchSettings$ } from './observables';
 import { JournalSearchSettingsKeys, JournalSearchSettingsNoNS } from './types';
 
@@ -74,16 +76,46 @@ export function registerSettings() {
     });
 
     new window.Ardittristan.ColorSetting('journal-search', 'mark-foreground-colour', {
-        name: 'Search Result Foreground Colour', // The name of the setting in the settings menu
-        hint: 'Foreground colour for search result highlighted terms', // A description of the registered setting and its behavior
-        label: 'Foreground Colour', // The text label used in the button
-        restricted: false, // Restrict this setting to gamemaster only?
-        defaultColor: color, // The default color of the setting
-        scope: 'client', // The scope of the setting
+        name: 'Search Result Foreground Colour',
+        hint: 'Foreground colour for search result highlighted terms',
+        label: 'Foreground Colour',
+        restricted: false,
+        defaultColor: color,
+        scope: 'client',
         onChange: (value: string) => {
             journalSearchSettings$.next({
                 ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
                 'mark-foreground-colour': value,
+            });
+        },
+    });
+
+    new window.Ardittristan.ColorSetting('journal-search', 'sidebar-page-title-text-colour', {
+        name: 'Sidebar Page Title Text Colour',
+        hint: 'Text colour of page titles in sidebar search results',
+        label: 'Text Colour',
+        restricted: false,
+        defaultColor: '#8497f7',
+        scope: 'client',
+        onChange: (value: string) => {
+            journalSearchSettings$.next({
+                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
+                'sidebar-page-title-text-colour': value,
+            });
+        },
+    });
+
+    new window.Ardittristan.ColorSetting('journal-search', 'sidebar-page-title-underline-colour', {
+        name: 'Sidebar Page Title Underline Colour',
+        hint: 'Underline colour of page titles in sidebar search results',
+        label: 'Underline Colour',
+        restricted: false,
+        defaultColor: '#ea25e3',
+        scope: 'client',
+        onChange: (value: string) => {
+            journalSearchSettings$.next({
+                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
+                'sidebar-page-title-underline-colour': value,
             });
         },
     });
@@ -97,6 +129,30 @@ export function registerSettings() {
             }),
             {} as JournalSearchSettingsNoNS,
         );
+
+    journalSearchSettings$.subscribe((settings) => {
+        if (settings) {
+            // Add a style tag if it doesn't exist that will set the colour variables on the root element
+            const styleTag =
+                document.querySelector<HTMLStyleElement>('#journal-search-style-tag') ?? createJournalSearchStyleTag();
+
+            styleTag.innerHTML = `
+                :root {
+                    --journal-search-highlight-fg: ${settings['mark-foreground-colour'] ?? 'marktext'};
+                    --journal-search-highlight-bg: ${settings['mark-background-colour'] ?? 'mark'};
+                    --journal-search-page-title-text-colour: ${settings['sidebar-page-title-text-colour'] ?? '#ff0000'};
+                    --journal-search-page-title-underline-colour: ${
+                        settings['sidebar-page-title-underline-colour'] ?? '#ff0000'
+                    };
+    
+                    --journal-search-highlight-monks-fg: ${settings['mark-foreground-colour'] ?? 'marktext'};
+                    --journal-search-highlight-monks-bg: ${
+                        settings['mark-background-colour'] ?? 'mark'
+                    };                
+                }
+            `;
+        }
+    });
 
     journalSearchSettings$.next(initSettings);
 }
