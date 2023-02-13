@@ -6,36 +6,29 @@ const __dirname = new URL('.', import.meta.url).pathname;
 export default {
     entry: ['./src/index.ts'],
     output: {
-        filename: 'module.js',
-        path: path.join(__dirname, 'module/scripts'),
-        publicPath: path.join(__dirname, 'module/'),
+        filename: 'scripts/module.js',
+        path: path.join(__dirname, 'module/'),
     },
     module: {
         rules: [
             {
                 test: /.tsx?$/,
                 exclude: /node_modules/,
-                use: [{ loader: 'ts-loader', options: { transpileOnly: true } }],
-            },
-            {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
-            },
-            {
-                test: /\.s[ac]ss$/i,
                 use: [
-                    // Creates `style` nodes from JS strings
-                    'style-loader',
-                    // Translates CSS into CommonJS
-                    'css-loader',
-                    // Compiles Sass to CSS
-                    'sass-loader',
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true,
+                        },
+                    },
                 ],
             },
         ],
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.scss'],
+        conditionNames: ['es2015', 'import'],
+        mainFields: ['es2015', 'module', 'main'],
     },
     devtool: false,
 };

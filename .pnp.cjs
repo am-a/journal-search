@@ -57,6 +57,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["pinst", "npm:3.0.0"],\
             ["pnp-webpack-plugin", "npm:1.7.0"],\
             ["prettier", "npm:2.8.3"],\
+            ["rxjs", "npm:7.8.0"],\
             ["sass", "npm:1.58.0"],\
             ["sass-loader", "virtual:419f82fa0fd550eada5ba64e2961aff81d3ac7873c9953904530c554eb2d5310ce58373c90419db38d8a7dfb3a575fb7d6f287179d781d15ca531fceb676821d#npm:13.2.0"],\
             ["style-loader", "virtual:419f82fa0fd550eada5ba64e2961aff81d3ac7873c9953904530c554eb2d5310ce58373c90419db38d8a7dfb3a575fb7d6f287179d781d15ca531fceb676821d#npm:3.3.1"],\
@@ -6764,6 +6765,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["pinst", "npm:3.0.0"],\
             ["pnp-webpack-plugin", "npm:1.7.0"],\
             ["prettier", "npm:2.8.3"],\
+            ["rxjs", "npm:7.8.0"],\
             ["sass", "npm:1.58.0"],\
             ["sass-loader", "virtual:419f82fa0fd550eada5ba64e2961aff81d3ac7873c9953904530c554eb2d5310ce58373c90419db38d8a7dfb3a575fb7d6f287179d781d15ca531fceb676821d#npm:13.2.0"],\
             ["style-loader", "virtual:419f82fa0fd550eada5ba64e2961aff81d3ac7873c9953904530c554eb2d5310ce58373c90419db38d8a7dfb3a575fb7d6f287179d781d15ca531fceb676821d#npm:3.3.1"],\

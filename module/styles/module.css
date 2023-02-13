@@ -1,51 +1,51 @@
 .journal-search-preview {
-    margin: 0;
-    font-size: smaller;
-    padding: 0 0.5em;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: clip;
-
-    height: 1.5em;
-    line-height: 1.5em;
-
-    border: 0.5em solid transparent;
-    box-sizing: content-box;
-    background-clip: content-box;
+  margin: 0;
+  font-size: smaller;
+  padding: 0 0.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  height: 1.5em;
+  line-height: 1.5em;
+  border: 0.5em solid transparent;
+  box-sizing: content-box;
+  background-clip: content-box;
+}
+.journal-search-preview.journal-search-result {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+.journal-search-preview.journal-search-result mark:not(.active) {
+  background: transparent;
+  color: inherit;
+}
+.journal-search-preview.journal-search-result:hover {
+  background-color: var(--color-shadow-primary, darkred);
+  filter: saturate(0.5);
+}
+.journal-search-preview.journal-search-more {
+  background: rgba(255, 255, 255, 0.05);
+  text-align: center;
+  font-style: italic;
+  opacity: 0.5;
 }
 
-.journal-search-result {
-    background-color: rgb(255 255 255 / 10%);
-    cursor: pointer;
+.journal-sheet mark.journal-search {
+  color: var(--journal-search-highlight-fg, marktext);
+  background-color: var(--journal-search-highlight-bg, mark);
+}
+.journal-sheet mark[data-markjs] {
+  color: var(--journal-search-highlight-monks-fg, marktext);
+  background-color: var(--journal-search-highlight-monks-bg, mark);
 }
 
-.journal-search-result mark:not(.active) {
-    background: transparent;
-    color: inherit;
+.journal-entry-pages:has(mark.active) .journal-page-content {
+  color: rgba(0, 0, 0, 0.5);
 }
-
-.journal-page-content mark.active {
-    outline: 1px dotted red;
+.journal-entry-pages:has(mark.active) .journal-page-content mark.active {
+  outline: 1px dotted red;
 }
-
-.journal-page-content:has(mark.active) {
-    color: rgba(0, 0, 0, 0.5);
-}
-
-.journal-page-content:has(mark.active) mark:not(.active) {
-    color: currentColor;
-    background-color: transparent;
-}
-
-.journal-search-result:hover {
-    background: var(--color-shadow-primary, darkred);
-    filter: saturate(0.5);
-}
-
-.journal-search-more {
-    background: rgb(255 255 255 / 5%);
-    text-align: center;
-    font-style: italic;
-    opacity: 0.5;
+.journal-entry-pages:has(mark.active) .journal-page-content mark:not(.active) {
+  color: currentColor;
+  background-color: transparent;
 }

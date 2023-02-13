@@ -18,7 +18,7 @@
     "minimumCoreVersion": "compatibility_minimum_core",
     "compatibleCoreVersion": "compatibility_minimum_compatible",
     "url": "https://github.com/am-a/journal-search",
-    "manifest": "https://github.com/am-a/journal-search/releases/download/v0.0.5/module.json",
+    "manifest": "https://github.com/am-a/journal-search/releases/download/latest/module.json",
     "download": "https://github.com/am-a/journal-search/releases/download/v0.0.5/release-v0.0.5.zip",
     "type": "module",
     "esmodules": ["scripts/module.js"],
@@ -38,6 +38,14 @@
                 "compatibility": {
                     "minimum": "1.0.0.0",
                     "verified": "1.12.6.0"
+                }
+            },
+            {
+                "id": "colorsettings",
+                "type": "module",
+                "compatibility": {
+                    "minimum": "2.9.1",
+                    "verified": "2.9.1"
                 }
             }
         ]

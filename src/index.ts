@@ -1,14 +1,17 @@
-import { _onSearchFilter } from './on-search-filter';
+import './styles.scss';
+
+import { init } from './init';
 
 Hooks.once('init', () => {
-    libWrapper?.register<JournalSheet, '_onSearchFilter'>(
-        'journal-search',
-        'JournalSheet.prototype._onSearchFilter',
-        function (this, wrapped, ...args) {
-            wrapped.call(this, ...args);
-            _onSearchFilter.call(this, ...args);
-            return;
-        },
-        'WRAPPER',
-    );
+    init();
 });
+
+if (module.hot) {
+    module.hot.accept('./init.ts', function () {
+        libWrapper?.unregister_all('journal-search');
+
+        void import('./init').then(({ reload }) => {
+            reload();
+        });
+    });
+}

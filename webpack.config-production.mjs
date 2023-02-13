@@ -12,6 +12,29 @@ const prodConfig = merge(baseConfig, {
     name: 'prod',
     mode: 'production',
     devtool: false,
+    module: {
+        rules: [
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'styles/module.css',
+                },
+                use: [
+                    {
+                        loader: 'sass-loader',
+                        // don't compress the output
+                        options: {
+                            sassOptions: {
+                                outputStyle: 'expanded',
+                            },
+                        },
+                    },
+                ],
+            },
+        ],
+    },
     plugins: [
         new CopyPlugin({
             patterns: [
