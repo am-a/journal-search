@@ -27,6 +27,8 @@
             "settings": {},
             "rules": {
                 "@typescript-eslint/no-shadow": ["error"],
+                // Seems to be buggy so disabling for now
+                "@typescript-eslint/no-unsafe-assignment": "off",
                 "arrow-body-style": "error",
                 "comma-dangle": ["error", "always-multiline"],
                 "function-call-argument-newline": ["error", "consistent"],

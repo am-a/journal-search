@@ -5345,6 +5345,7 @@ __metadata:
     pinst: ^3.0.0
     pnp-webpack-plugin: ^1.7.0
     prettier: ^2.8.3
+    rxjs: ^7.8.0
     sass: ^1.58.0
     sass-loader: ^13.2.0
     style-loader: ^3.3.1
@@ -9185,7 +9186,7 @@ foundry-vtt-types@League-of-Foundry-Developers/foundry-vtt-types:
   languageName: node
   linkType: hard
 
-"rxjs@npm:^7.5.5":
+"rxjs@npm:^7.5.5, rxjs@npm:^7.8.0":
   version: 7.8.0
   resolution: "rxjs@npm:7.8.0"
   dependencies:

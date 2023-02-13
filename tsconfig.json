@@ -1,23 +1,27 @@
 {
     "compilerOptions": {
-        "allowJs": true,
-        "target": "es2020",
-        "module": "commonjs",
         "baseUrl": "./",
         "rootDir": "./src",
         "outDir": "./dist/",
+
+        "allowJs": true,
+        "target": "es2020",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noUncheckedIndexedAccess": true,
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "sourceMap": true,
+        
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
+        "sourceMap": true,
         "incremental": false,
-        "types": ["webpack-env", "foundry-vtt-types", "resize-observer-browser", "jest"],
-        "noErrorTruncation": true
+        "noErrorTruncation": true,
+                
+        "types": ["webpack-env", "foundry-vtt-types", "resize-observer-browser", "jest"]
     },
     "include": ["./src/globals.d.ts", "./src/**/*.ts"],
     "exclude": []

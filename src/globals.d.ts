@@ -1,3 +1,5 @@
+declare module '*.scss';
+
 declare interface RegExpExecArray {
     indices?: [number, number][];
 }
@@ -9,6 +11,7 @@ declare interface LibWrapper {
         wrapper: (this: T, wrapped: T[K], ...args: Parameters<T[K]>) => ReturnType<T[K]>,
         mode: 'WRAPPER' | 'MIXED' | 'OVERRIDE',
     );
+    unregister_all(name: string): void;
 }
 
 declare const libWrapper: LibWrapper;
@@ -38,18 +41,48 @@ declare class JournalSheet<Options extends JournalSheetOptions = JournalSheetOpt
     ConcreteJournalEntry
 > {
     mode: unknown;
-
-    goToPage(pageId: string, anchor?: unknown): void | Promise<void>;
     pageIndex: string;
+
     object: {
+        _id: string;
         pages: DocumentCollection<JournalPageData, 'pages'>;
+        // parent: JournalEntry & { _id: string };
     };
 
-    // Added by module
-    _targetAnchorIndex?: number;
+    goToPage(pageId: string, anchor?: unknown): void | Promise<void>;
 
     // Private members not in types
-    _pages: Record<string, JournalPageData>;
-    _onSearchFilter(_: InputEvent, query: string, rgx: RegExp, html: HTMLElement): void;
     _onClickPageLink(evt: JQuery.ClickEvent<HTMLElement, undefined, HTMLElement, HTMLElement>): void;
+    _onSearchFilter(_: InputEvent, query: string, rgx: RegExp, html: HTMLElement): void;
+    _pages: Record<string, JournalPageData>;
+    _render(force: boolean, options: unknown): Promise<void>;
+    _renderPageViews(html: JQuery<HTMLElement>, toc: unknown): Promise<void>;
+}
+
+declare class EnhancedJournal {
+    appId: number;
+    searchText(query: string): void;
+
+    object: {
+        apps: Record<string, JournalSheet>;
+    };
+}
+
+declare namespace ClientSettings {
+    interface Values {
+        'journal-search.enable-monks-enhanced-journal-compatibility': boolean;
+        'journal-search.highlight-page-matches-on-hover': boolean;
+        'journal-search.mark-background-colour': string;
+        'journal-search.mark-foreground-colour': string;
+    }
+}
+
+type JournalSearchSettingsKeys = {
+    [_ in keyof JournalSearchSettings]: _ extends `journal-search.${infer K}` ? K : never;
+}[keyof JournalSearchSettings];
+
+declare interface Window {
+    Ardittristan: {
+        ColorSetting: any;
+    };
 }

@@ -9,22 +9,53 @@ const __dirname = new URL('.', import.meta.url).pathname;
 const devConfig = merge(baseConfig, {
     name: 'dev',
     mode: 'development',
-    devtool: 'eval-source-map',
+    devtool: 'eval-cheap-module-source-map',
+    output: {
+        publicPath: '/modules/journal-search/',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.s[ac]ss$/i,
+                exclude: /node_modules/,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    'style-loader',
+                    // Translates CSS into CommonJS
+                    'css-loader',
+                    // Compiles Sass to CSS
+                    'sass-loader',
+                ],
+            },
+        ],
+    },
     devServer: {
         hot: true,
-        client: false,
-        devMiddleware: {
-            writeToDisk: false,
-        },
         port: 30001,
-        static: {
-            directory: path.resolve(__dirname, 'module/scripts'),
-        },
+        static: [
+            {
+                directory: path.resolve(__dirname, 'module/styles'),
+                publicPath: '/modules/journal-search/styles/',
+            },
+            {
+                directory: path.resolve(__dirname, 'module/assets'),
+                publicPath: '/modules/journal-search/assets/',
+            },
+            {
+                directory: path.resolve(__dirname, 'module/lang'),
+                publicPath: '/modules/journal-search/lang/',
+            },
+        ],
         proxy: [
             {
-                changeOrigin: true,
-                context: (pathname) => !pathname.match('^/sockjs'),
+                context: (pathname) =>
+                    !(
+                        pathname.match(/^\/sockjs/) ||
+                        pathname.match(/^\/modules\/journal-search/) ||
+                        pathname.match(/^\/ws/)
+                    ),
                 target: 'http://localhost:30000',
+                changeOrigin: true,
                 ws: true,
             },
         ],
