@@ -40,6 +40,10 @@ export const updateSidebarEntriesOnQuery = () => {
 
             sheet.element[0]?.querySelectorAll('.journal-search-preview-container').forEach((el) => el.remove());
 
+            if (!settings?.['enable-sidebar-results']) {
+                return;
+            }
+
             pagePreviews?.forEach((pagePreview: DocumentFragment, pageId: string) => {
                 const entryId = sheet.documents.find((entry) => entry.pages.has(pageId))?.id;
                 if (entryId) {

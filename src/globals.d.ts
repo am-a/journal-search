@@ -83,6 +83,7 @@ declare namespace ClientSettings {
         'journal-search.mark-foreground-colour': string;
         'journal-search.sidebar-page-title-text-colour': string;
         'journal-search.sidebar-page-title-underline-colour': string;
+        'journal-search.enable-sidebar-results': boolean;
     }
 }
 

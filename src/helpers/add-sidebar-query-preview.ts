@@ -38,7 +38,9 @@ export const addSidebarQueryPreview =
             sidebarNode.parentElement?.append(containerNode);
             // Make sure result is visible
             sidebarNode.style.removeProperty('display');
-            sidebarNode.closest('.directory-item.folder')?.classList.remove('collapsed');
+            const folderNode = sidebarNode.closest<HTMLElement>('.directory-item.folder');
+            folderNode?.classList.remove('collapsed');
+            folderNode?.style.removeProperty('display');
 
             requestAnimationFrame(() => {
                 containerNode.querySelectorAll('mark.active').forEach((queryMatchMarkElement) =>

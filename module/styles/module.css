@@ -30,11 +30,13 @@
   opacity: 0.5;
 }
 
-.journal-sheet mark.journal-search {
+.journal-sheet mark.journal-search,
+.journal-sidebar mark.journal-search {
   color: var(--journal-search-highlight-fg, marktext);
   background-color: var(--journal-search-highlight-bg, mark);
 }
-.journal-sheet mark[data-markjs] {
+.journal-sheet mark[data-markjs],
+.journal-sidebar mark[data-markjs] {
   color: var(--journal-search-highlight-monks-fg, marktext);
   background-color: var(--journal-search-highlight-monks-bg, mark);
 }
@@ -48,4 +50,25 @@
 .journal-entry-pages:has(mark.active) .journal-page-content mark:not(.active) {
   color: currentColor;
   background-color: transparent;
+}
+
+.journal-search-preview-container {
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+}
+.journal-search-preview-container .journal-search-preview {
+  max-width: calc(100% - 24px);
+}
+.journal-search-preview-container .journal-search-preview-page-title {
+  border-bottom: 1px dashed var(--journal-search-page-title-underline-colour, #ea25e3);
+  color: var(--journal-search-page-title-text-colour, #8497f7);
+  cursor: pointer;
+  margin-top: 0.75em;
+}
+.journal-search-preview-container .journal-search-preview-page-title:hover {
+  background: rgba(0, 0, 0, 0.2);
+  filter: brightness(1.5);
 }

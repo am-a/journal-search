@@ -90,6 +90,20 @@ export function registerSettings() {
         },
     });
 
+    register('enable-sidebar-results', {
+        default: true,
+        hint: 'Enable sidebar search results within pages',
+        name: 'Enable Sidebar Searching',
+        scope: 'client',
+        type: Boolean,
+        config: true,
+        onChange: (value: boolean) =>
+            journalSearchSettings$.next({
+                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
+                'enable-sidebar-results': value,
+            }),
+    });
+
     new window.Ardittristan.ColorSetting('journal-search', 'sidebar-page-title-text-colour', {
         name: 'Sidebar Page Title Text Colour',
         hint: 'Text colour of page titles in sidebar search results',

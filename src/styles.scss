@@ -38,7 +38,8 @@
     }
 }
 
-.journal-sheet {
+.journal-sheet,
+.journal-sidebar {
     mark.journal-search {
         color: var(--journal-search-highlight-fg, marktext);
         background-color: var(--journal-search-highlight-bg, mark);
