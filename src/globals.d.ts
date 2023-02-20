@@ -49,6 +49,7 @@ declare class JournalSheet<Options extends JournalSheetOptions = JournalSheetOpt
 
     object: JournalEntry;
 
+    getPageSheet(pageId: string): unknown | undefined;
     goToPage(pageId: string, anchor?: unknown): void | Promise<void>;
 
     // Private members not in types

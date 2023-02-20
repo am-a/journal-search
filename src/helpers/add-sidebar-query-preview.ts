@@ -14,14 +14,27 @@ export const addSidebarQueryPreview =
     }) =>
     (pagePreview: DocumentFragment, pageId: string, entryId: string) => {
         const sidebarNode = sidebarFromRender.get(entryId);
-        const journalEntrySheet = sheet.documents.find((doc) => doc.id === entryId)?.sheet;
+        const journalEntrySheet = sheet.documents.find((doc) => doc.id === entryId)?.sheet as unknown as
+            | JournalSheet
+            | undefined;
 
-        const renderPageSheet = async () => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-            await journalEntrySheet?.render(true, { pageId } as any);
+        const renderPageSheet = () => {
+            journalEntrySheet?.render(true, { pageId } as Application.RenderOptions<JournalSheetOptions>);
         };
 
-        if (sidebarNode && pagePreview.hasChildNodes()) {
+        // TODO - Improve horrible typing
+        const pageSheet = journalEntrySheet?.getPageSheet(pageId) as
+            | DocumentSheet<
+                  DocumentSheetOptions<foundry.abstract.Document<foundry.abstract.DocumentData<never, never>>>
+              >
+            | undefined;
+
+        const canView = pageSheet?.object.testUserPermission(
+            (game as Game & { user: User }).user,
+            pageSheet.options.viewPermission,
+        );
+
+        if (canView && sidebarNode && pagePreview.hasChildNodes()) {
             // Create a container for the preview
             const containerNode = document.createElement('div');
             containerNode.classList.add('journal-search-preview-container');
