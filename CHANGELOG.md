@@ -1,9 +1,14 @@
+## <small>0.0.8 (2023-02-20)</small>
+
+-   fix(sidebar-search): fixes sidebar results showing pages user doesn't has permission for ([ab99332](https://github.com/am-a/journal-search/commit/ab99332)), closes [#3](https://github.com/am-a/journal-search/issues/3)
+
 ## <small>0.0.7 (2023-02-13)</small>
 
+-   release: v0.0.6 ([7feb1a2](https://github.com/am-a/journal-search/commit/7feb1a2))
+-   release: v0.0.7 ([d97f9b5](https://github.com/am-a/journal-search/commit/d97f9b5))
 -   feat: add settings for sidebar results - also readme ([e73c7dc](https://github.com/am-a/journal-search/commit/e73c7dc))
 -   feat: adds sidebar results ([a6bc947](https://github.com/am-a/journal-search/commit/a6bc947)), closes [#1](https://github.com/am-a/journal-search/issues/1)
 -   feat: adds support for multipage, monks, settings ([5a18656](https://github.com/am-a/journal-search/commit/5a18656))
--   release: v0.0.6 ([7feb1a2](https://github.com/am-a/journal-search/commit/7feb1a2))
 
 ## <small>0.0.5 (2023-02-03)</small>
 
