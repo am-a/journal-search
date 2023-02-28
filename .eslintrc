@@ -41,7 +41,7 @@
                     }
                 ],
                 "quote-props": ["error", "as-needed"],
-                "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+                "quotes": ["error", "single", { "allowTemplateLiterals": false }],
                 "sort-keys": "off"
             }
         },

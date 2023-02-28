@@ -41,13 +41,13 @@
   background-color: var(--journal-search-highlight-monks-bg, mark);
 }
 
-.journal-entry-pages:has(mark.active) .journal-page-content {
+.journal-entry-pages .journal-page-content.mark-active {
   color: rgba(0, 0, 0, 0.5);
 }
-.journal-entry-pages:has(mark.active) .journal-page-content mark.active {
+.journal-entry-pages .journal-page-content.mark-active mark.active {
   outline: 1px dotted red;
 }
-.journal-entry-pages:has(mark.active) .journal-page-content mark:not(.active) {
+.journal-entry-pages .journal-page-content.mark-active mark:not(.active) {
   color: currentColor;
   background-color: transparent;
 }

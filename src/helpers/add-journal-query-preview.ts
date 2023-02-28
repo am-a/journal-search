@@ -51,8 +51,14 @@ export const addJournalQueryPreview =
                         previewElement.addEventListener('click', onPreviewClick);
 
                         if (settings?.['highlight-page-matches-on-hover']) {
-                            previewElement.addEventListener('mouseover', () => targetMark?.classList.add('active'));
-                            previewElement.addEventListener('mouseout', () => targetMark?.classList.remove('active'));
+                            previewElement.addEventListener('mouseover', () => {
+                                renderedPage?.classList.add('mark-active');
+                                targetMark?.classList.add('active');
+                            });
+                            previewElement.addEventListener('mouseout', () => {
+                                renderedPage?.classList.remove('mark-active');
+                                targetMark?.classList.remove('active');
+                            });
                         }
                     });
             });

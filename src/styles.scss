@@ -51,8 +51,8 @@
     }
 }
 
-.journal-entry-pages:has(mark.active) {
-    .journal-page-content {
+.journal-entry-pages {
+    .journal-page-content.mark-active {
         // Dim out the rest of the page when there's an "active" mark
         color: rgba(0, 0, 0, 0.5);
 

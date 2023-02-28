@@ -8,8 +8,8 @@ export function _onSearchFilterWrapper(
     sheetElement: HTMLElement,
 ) {
     requestAnimationFrame(() => {
-        sheetElement
-            .querySelectorAll<HTMLElement>(`.directory-item:has(.journal-search-preview)`)
+        Array.from(sheetElement.querySelectorAll<HTMLElement>('.directory-item'))
+            .filter((el) => el.querySelector('.journal-search-preview'))
             .forEach((element) => element.classList.toggle('hidden', false));
     });
 
