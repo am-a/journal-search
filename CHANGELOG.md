@@ -1,5 +1,10 @@
+## <small>0.0.9 (2023-02-28)</small>
+
+-   fix: fixes journal-search not working on Firefox due to :has css selector usage ([b93f05e](https://github.com/am-a/journal-search/commit/b93f05e)), closes [#4](https://github.com/am-a/journal-search/issues/4)
+
 ## <small>0.0.8 (2023-02-20)</small>
 
+-   release: v0.0.8 ([29374cc](https://github.com/am-a/journal-search/commit/29374cc))
 -   fix(sidebar-search): fixes sidebar results showing pages user doesn't has permission for ([ab99332](https://github.com/am-a/journal-search/commit/ab99332)), closes [#3](https://github.com/am-a/journal-search/issues/3)
 
 ## <small>0.0.7 (2023-02-13)</small>
