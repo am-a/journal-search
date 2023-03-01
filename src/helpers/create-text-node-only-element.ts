@@ -1,18 +1,28 @@
 export const createTextNodeOnlyElement = (targetElement: HTMLElement): DocumentFragment => {
-    const nodes = new Set<Node>();
+    const nodes = [];
 
-    const treeWalker = document.createTreeWalker(targetElement, NodeFilter.SHOW_TEXT, {
-        acceptNode: (node) => (node.nodeType === node.TEXT_NODE ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP),
-    });
+    const treeWalker = document.createTreeWalker(
+        targetElement.cloneNode(true),
+        NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT,
+        (node) =>
+            node.nodeName.toLowerCase() === 'mark' ||
+            (node.nodeType === node.TEXT_NODE && node.parentNode?.nodeName.toLowerCase() !== 'mark')
+                ? NodeFilter.FILTER_ACCEPT
+                : NodeFilter.FILTER_SKIP,
+    );
 
-    let nextNode: Text | null = null;
-
-    while ((nextNode = treeWalker.nextNode() as Text)) {
-        nextNode?.parentNode?.nodeName.toLowerCase() === 'mark' ? nodes.add(nextNode.parentNode) : nodes.add(nextNode);
-    }
+    let nextNode: Node | null = null;
 
     const element = document.createDocumentFragment();
-    element.append(...nodes.map((node) => node.cloneNode(true)).values());
+
+    while ((nextNode = treeWalker.nextNode() as Node)) {
+        nodes.push(nextNode);
+    }
+
+    element.append(...nodes);
+
+    // empty nodes array
+    nodes.length = 0;
 
     return element;
 };

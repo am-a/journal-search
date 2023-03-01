@@ -90,20 +90,6 @@ export function registerSettings() {
         },
     });
 
-    register('enable-sidebar-results', {
-        default: true,
-        hint: 'Enable sidebar search results within pages',
-        name: 'Enable Sidebar Searching',
-        scope: 'client',
-        type: Boolean,
-        config: true,
-        onChange: (value: boolean) =>
-            journalSearchSettings$.next({
-                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
-                'enable-sidebar-results': value,
-            }),
-    });
-
     new window.Ardittristan.ColorSetting('journal-search', 'sidebar-page-title-text-colour', {
         name: 'Sidebar Page Title Text Colour',
         hint: 'Text colour of page titles in sidebar search results',
@@ -132,6 +118,90 @@ export function registerSettings() {
                 'sidebar-page-title-underline-colour': value,
             });
         },
+    });
+
+    register('search-preview-debounce', {
+        default: 100,
+        hint: 'Debounce (delay) in milliseconds after query entered before search results are shown',
+        name: 'Search Preview Debounce',
+        scope: 'client',
+        type: Number,
+        config: true,
+        onChange: (value: number) =>
+            journalSearchSettings$.next({
+                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
+                'search-preview-debounce': value,
+            }),
+    });
+
+    register('show-journal-preview', {
+        default: true,
+        hint: 'Show preview search results within the Table of Contents',
+        name: 'Show Journal Preview',
+        scope: 'client',
+        type: Boolean,
+        config: true,
+        onChange: (value: boolean) =>
+            journalSearchSettings$.next({
+                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
+                'show-journal-preview': value,
+            }),
+    });
+
+    register('journal-preview-count', {
+        default: 3,
+        hint: 'Number of search result previews to show in the Table of Contents',
+        name: 'Journal Preview Count',
+        scope: 'client',
+        type: Number,
+        config: true,
+        onChange: (value: number) =>
+            journalSearchSettings$.next({
+                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
+                'journal-preview-count': value,
+            }),
+    });
+
+    register('enable-sidebar-results', {
+        default: true,
+        hint: 'Enable sidebar search results within pages',
+        name: 'Enable Sidebar Searching',
+        scope: 'client',
+        type: Boolean,
+        config: true,
+        onChange: (value: boolean) =>
+            journalSearchSettings$.next({
+                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
+                'enable-sidebar-results': value,
+            }),
+    });
+
+    register('show-sidebar-preview', {
+        default: true,
+        hint: 'Show preview search results within sidebar',
+        name: 'Show Sidebar Preview',
+        scope: 'client',
+        type: Boolean,
+        config: true,
+        onChange: (value: boolean) =>
+            journalSearchSettings$.next({
+                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
+                'show-sidebar-preview': value,
+            }),
+    });
+
+    register('sidebar-preview-count', {
+        default: 3,
+        hint: 'Number of search result previews to show in the sidebar',
+        name: 'Sidebar Preview Count',
+        scope: 'client',
+        type: Number,
+        config: true,
+        onChange: (value: number) =>
+            journalSearchSettings$.next({
+                ...(journalSearchSettings$.getValue() as JournalSearchSettingsNoNS),
+                'sidebar-preview-count': value,
+            }),
     });
 
     const initSettings = Array.from((game as Game).settings.settings.values())

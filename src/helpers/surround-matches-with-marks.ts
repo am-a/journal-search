@@ -1,27 +1,31 @@
 import { ElementQueryMatches } from '../types';
 
-const surroundNodeWithMark = (node: Node, parentElement: HTMLElement) => {
-    const range = parentElement.ownerDocument.createRange();
-    range.setStart(node, 0);
-    range.setEndAfter(node);
-    const mark = document.createElement('mark');
-    mark.classList.add('journal-search');
-    range.surroundContents(mark);
-};
-
 export const surroundMatchesWithMarks = ({ element: pageElement, matches }: ElementQueryMatches) => {
-    Array.from(matches).forEach(([textNode, { matchOffsets }]) => {
+    const matchHTML = Array.from(matches).map(([textNode, { matchOffsets }]) =>
         matchOffsets.reduce(
-            ([currentNode, offset], [start, end]) => {
-                const matchNode = currentNode.splitText(start - offset);
-                const nextNode = matchNode.splitText(end - start);
-                // TODO - Clone node?
-                surroundNodeWithMark(matchNode, pageElement);
+            ([currentText, offset], [start, end]) => {
+                const [startOffset, endOffset] = [start + offset, end + offset];
+                const [startText, matchText, endText] = [
+                    currentText.slice(0, startOffset),
+                    currentText.slice(startOffset, endOffset),
+                    currentText.slice(endOffset),
+                ];
 
-                return [nextNode, end] as [Text, number];
+                const nodeHTML = `${startText}<mark class="journal-search">${matchText}</mark>${endText}`;
+                return [nodeHTML, offset + 36] as [string, number];
             },
-            [textNode, 0] as [Text, number],
-        );
+            [textNode.textContent, 0] as [string, number],
+        ),
+    );
+
+    Array.from(matches).forEach(([textNode], i) => {
+        const newElement = document.createElement('ins');
+        newElement.classList.add('journal-search-markup');
+        const match = matchHTML[i];
+        if (match) {
+            newElement.innerHTML = match[0];
+            textNode.replaceWith(newElement);
+        }
     });
 
     return pageElement;

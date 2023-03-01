@@ -29,7 +29,7 @@ export const updateSidebarEntriesOnQuery = () => {
                     sheet,
                 };
             }),
-            mergeMap((args) => getQueryObservableDefault(sidebarQuery$, sidebarRender$)(args)),
+            mergeMap((args) => getQueryObservableDefault(sidebarQuery$, sidebarRender$, 'sidebar')(args)),
             withLatestFrom(journalSearchSettings$),
         )
         .subscribe(([{ pagePreviews, sheet, contentFromData, entryFromRender, pageDataMap }, settings]) => {

@@ -1,4 +1,5 @@
-import { map, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { animationFrameScheduler } from 'rxjs';
+import { map, mergeMap, observeOn, switchMap, withLatestFrom } from 'rxjs/operators';
 
 import { htmlStringToElement } from './helpers';
 import { addJournalQueryPreview } from './helpers/add-journal-query-preview';
@@ -37,11 +38,16 @@ export const updateJournalEntriesOnQuery = () =>
                 };
             }),
             mergeMap((args) =>
-                !isMonksEnhancedJournalEnabled()
-                    ? getQueryObservableDefault(journalQuery$, journalRender$)(args)
-                    : getQueryObservableMonks(args),
+                journalSearchSettings$.pipe(
+                    switchMap((settings) =>
+                        !isMonksEnhancedJournalEnabled() || !settings?.['enable-monks-enhanced-journal-compatibility']
+                            ? getQueryObservableDefault(journalQuery$, journalRender$, 'journal')(args)
+                            : getQueryObservableMonks(args),
+                    ),
+                ),
             ),
             withLatestFrom(journalSearchSettings$),
+            observeOn(animationFrameScheduler),
         )
         .subscribe(
             ([{ contentMarked, contentFromData, contentFromRender, pagePreviews, TOCFromRender, sheet }, settings]) => {

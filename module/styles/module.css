@@ -72,3 +72,7 @@
   background: rgba(0, 0, 0, 0.2);
   filter: brightness(1.5);
 }
+
+ins.journal-search-markup {
+  display: contents;
+}

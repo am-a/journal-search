@@ -1,6 +1,6 @@
-import { distinctUntilKeyChanged, map, takeUntil } from 'rxjs';
+import { debounceTime, distinctUntilKeyChanged, map, switchMap, takeUntil } from 'rxjs/operators';
 
-import { journalRender$, monksQuery$ } from '../observables';
+import { journalRender$, journalSearchSettings$, monksQuery$ } from '../observables';
 import { createPreviewsFromPageQueryMarkup } from './create-previews-from-page-query-markup';
 import { createTextNodeOnlyElement } from './create-text-node-only-element';
 import { filterAppId } from './filter-app-id';
@@ -16,23 +16,31 @@ export const getQueryObservableMonks = <
     contentFromRender,
     ...rest
 }: T) =>
-    monksQuery$.pipe(
-        filterAppId(appId),
-        distinctUntilKeyChanged('query'),
-        map(() => {
-            const contentMarked = contentFromRender;
+    journalSearchSettings$.pipe(
+        switchMap((settings) =>
+            monksQuery$.pipe(
+                debounceTime(settings?.['search-preview-debounce'] ?? 0),
+                filterAppId(appId),
+                distinctUntilKeyChanged('query'),
+                map(() => {
+                    const contentMarked = contentFromRender;
 
-            const pagePreviews = mapMap(contentFromRender, (el) =>
-                createPreviewsFromPageQueryMarkup(createTextNodeOnlyElement(el)),
-            );
+                    const pagePreviews = mapMap(contentFromRender, (el) =>
+                        createPreviewsFromPageQueryMarkup(
+                            createTextNodeOnlyElement(el),
+                            settings?.['journal-preview-count'],
+                        ),
+                    );
 
-            return {
-                ...rest,
-                appId,
-                contentMarked,
-                contentFromRender,
-                pagePreviews,
-            };
-        }),
-        takeUntil(journalRender$.pipe(filterAppId(appId))),
+                    return {
+                        ...rest,
+                        appId,
+                        contentMarked,
+                        contentFromRender,
+                        pagePreviews,
+                    };
+                }),
+                takeUntil(journalRender$.pipe(filterAppId(appId))),
+            ),
+        ),
     );
