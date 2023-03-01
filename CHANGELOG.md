@@ -1,5 +1,10 @@
+## <small>0.0.10 (2023-03-01)</small>
+
+-   feat: improves performance and adds options for preview generation ([d1e7d88](https://github.com/am-a/journal-search/commit/d1e7d88)), closes [#5](https://github.com/am-a/journal-search/issues/5)
+
 ## <small>0.0.9 (2023-02-28)</small>
 
+-   release: v0.0.9 ([97da579](https://github.com/am-a/journal-search/commit/97da579))
 -   fix: fixes journal-search not working on Firefox due to :has css selector usage ([b93f05e](https://github.com/am-a/journal-search/commit/b93f05e)), closes [#4](https://github.com/am-a/journal-search/issues/4)
 
 ## <small>0.0.8 (2023-02-20)</small>
